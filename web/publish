@@ -1,0 +1,61 @@
+#!/usr/bin/env python
+
+import os
+import re
+import tempfile
+
+TITLE_RE = re.compile("<!--\s*{{\s*Title: (.*)\s*}}\s*-->")
+
+def get_title(p):
+    f = file(p)
+    for l in f:
+        m = TITLE_RE.search(l)
+        if m != None:
+            f.close()
+            return m.groups()[0]
+    f.close()
+
+    return ""
+    
+
+
+for p in os.listdir("."):
+    if not p.endswith(".html"): # not HTML files
+        continue
+
+    if p.startswith("_"): # templates
+        continue
+
+    print p
+
+    title = get_title(p)
+
+    print "TITLE: %s" % title
+
+
+    (fd, temppath) = tempfile.mkstemp()
+    f_out = os.fdopen(fd, "w")
+
+    
+    f = file("_header.html")
+    for l in f:
+        l = l.replace("{{title}}", title)
+        f_out.write(l)
+
+    f.close()
+
+    
+    f = file(p)
+    for l in f:
+        f_out.write(l)
+    f.close()
+
+    f = file("_footer.html")
+    for l in f:
+        f_out.write(l)
+    f.close()
+
+    os.rename(p, p+".pretemplate")
+    os.rename(temppath, p)
+
+    

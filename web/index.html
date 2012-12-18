@@ -1,0 +1,167 @@
+<!-- {{ Title: Undertaker: helping you share your projects }} -->
+
+<h1>Undertaker</h1>
+
+<p>Undertaker is a new-school unix utility<sup><small><a
+   href="#footnote1" name="footnote1return">[1]</a></small></sup>,
+  which exists to help structure your projects for release from the
+  start.</p>
+
+<p class="quote">"Ideas rot if you don't do something with them. I used to try to hoard them, 
+		  but they rotted. Now I just blog them or tell people about them. Sometimes 
+		  they still rot, but sometimes someone finds them useful in one way or 
+		  another" -- Edd Dumbill <a href="#footnote2" name="footnote2return">[2]</a></p>
+
+<p>The inspiration for this was a sudden realization: "Y'know, I could
+put 90% of everything on my computer on the web, and it wouldn't cause
+any harm."  It became abundantly clear that I wasn't publishing nearly
+enough of what I was up to on the web, and that's really too bad.  So,
+I started thinking about how to make sharing things on the web the
+default action for my projects.  The current results of that are here,
+though they are very much a work-in-progress.</p>
+
+
+<p class="quote">"Publishing is like your parents coming over -- you
+		  have to clean it up and make it presentable" --
+		  Danny O'Brien <a href="#footnote3"
+		  name="footnote3return">[3]</a></p>
+
+
+<p>Most of the project is still very much WIP, so the best
+documentation is in the README file and the source code.  If you want
+to use this right now, you'll need to be willing to do a fair bit of
+hacking, kluding, and otherwise fixing up to get around the stuff I
+have hard-coded for my own settings right now.</p>
+
+<p>You can git clone the code from <a href="undertaker.git/">this
+URL</a> (right-click and "copy link address").</p>
+
+<h2>Why not use nice services like github or wordpress for
+everything?</h2>
+
+<p>There's an argument to be made for just using github (or bitbucket or
+sourceforge or...) for the source code storage, and then just putting
+everything up on a blog for the sharing of content.  There are a few
+problems with this approach: durability, archivability, and
+portability</p>
+
+<p>"Durability" here means "How long a given publication will last."
+Of all the services mentioned above, sourceforge has by far the
+longest track record.  It's been up and running for over a decade at
+this point.  However, for the last five years, most of us have had
+serious concerns for SF's longer-term viability.  Not very many people
+are putting new content up on SF, because it's not clear how much
+longer they're going to be around.  Any content you put into a
+closed-system service will only exist as long as that service
+does.</p>
+
+<p>"Archivability" is not a word that I just made up, I swear.  It
+refers to how easy it is to create an archive of a work. There are
+many people trying to create archives of the whole internet for
+posterity.  The two most visible are the <a
+ href="http://archive.org/web/web.php">Internet Archive's Wayback
+Machine</a> and <a
+ href="http://archiveteam.org/index.php?title=Main_Page">Archive
+Team</a>, a "loose collective of rogue archivists."  These nice people
+are trying to make copies of your stuff so that people a hundred years
+from now can see it.  The least we can do is make their lives easier,
+by creating structures that are amenable to crawling.  We also want to
+avoid running any code on the webserver: if we can publish as a big
+chunk of static content, it can be archived trivially.  On the other
+hand, if your site navigation is predicated on form submissions,
+search boxes, and such, it becomes a part of the "<a
+ href="http://en.wikipedia.org/wiki/Deep_Web">deep web</a>,"
+inaccessible to crawlers and archivists.  Your site is also not
+archivable by yourself: if your homepage was built using PHP3, there's
+a good chance it won't run on recent PHP releases<a href="#footnote4" name="footnote4return">[4]</a>.  This means that
+your carefully-crafted dynamic homepage has, effectively,
+disappeared.</p>
+
+<p>The last major concern is portability.  How much work is it to move
+your project from one service to another?  If your software has its
+whole homepage in github's wiki tool, and github decides to stop
+supporting that feature, how hard is it going to be to move that
+content off to another service?  Whatever format our final
+"publication" takes, it should be trivial to move it from one service
+to another.  This lines up nicely with the concerns of
+"archivability."  If we publish a ball of static content, it can
+easily be crawled, and it's also trivial to deploy to another
+location.  You simply need to scp it to another webserver, and maybe
+repoint DNS at it.</p>
+
+<p>Undertaker is strongly informed by these three concerns.  It
+attempts to be as simple as possible, both in the structure of its
+ouput (a directory you can upload to literally any webserver), as well
+as its input (a directory of files, following an orderly pattern).
+This makes it easy for you to save copies of your work for backups and
+archiving, as well as making it easy to share your work widely using
+very basic, very widespread tools.  </p>
+
+<p>It also tries to keep its processing of your input to a minimum, so
+that an undertaker content repository is a decent archive itself,
+without requiring anyone actually have undertaker to make sense of
+it<a href="#footnote5" name="footnote5return">[5]</a>.  Locking your
+information up in proprietary formats is like hiring someone to write
+it all down in Navajo, Icelandic, or Esperanto.  While you're paying
+her to do this, it's easy to store and retrieve your information
+yourself.  But, at some point, she's going to go away.  Sure, there
+are a few people around the world who will be able to get your content
+out for you, but why not keep your data in a human-readable format in
+the first place?</p>
+
+<!-- -------------------- -->
+
+
+<p class="footnote"><a name="footnote1">1.</a> <a href="#footnote1return">^</a> New-school unix utilities are utilities made up of subcommands.  The
+  best-known examples are git and rails.  To do anything, you run 'git
+  foo', and behind the scenes, git is actually just running 'git-foo'
+  for you.  Your whole interface with a non-trivial world of software
+  comes via one meta-command, which just multiplexes itself out to
+  subcommands.  For a better description (with a fair bit of
+  distraction about accounting software), see <a
+   href="http://joeyh.name/blog/entry/hledger/">Joey Hess's post about
+  hledger</a>) <a href="#footnote1return">^return^</a> .</p>
+
+<p class="footnote"><a name="footnote2">2.</a> <a
+ href="#footnote2return">^</a> From Cory Doctorow's notes on Danny
+O'Brien's talk on Life Hacks (<a
+ href="http://www.craphound.com/lifehacks2.txt">http://www.craphound.com/lifehacks2.txt</a>)
+ <a href="#footnote2return">^return^</a></p>
+
+<p class="footnote"><a name="footnote3">3.</a> <a
+  href="#footnote3return">^</a> From Cory Doctorow's notes on Danny
+ O'Brien's talk on Life Hacks (<a
+  href="http://www.craphound.com/lifehacks2.txt">http://www.craphound.com/lifehacks2.txt</a>),
+ with small edit made per Danny in correspondance <a
+  href="#footnote3return">^return^</a></p>
+
+<p class="footnote"><a name="footnote4">4.</a> <a
+   href="#footnote4return">^</a> This is something I am acutely
+  worried about.  The PHP3 example described comes directly from my
+  experience working at <a href="http://www.ibiblio.org">ibiblio</a>,
+  an internet library that provides hosting to nonprofits.  We
+  <em>had</em> to upgrade to PHP4 for security reasons, after trying
+  not to for years.  We set up a test server, and let all our users
+   know about the pending switch.  All the maintained projects had a
+   few weeks to figure out how to get their code to run under PHP4,
+   and then we threw the switch.  As soon as we did, large swathes of
+   information that had been available the day before was now
+   disappeared from the internet.  <a
+   href="#footnote4return">^return^</a></p>
+
+<p class="footnote"><a name="footnote5">5.</a> <a
+      href="#footnote5return">^</a> This is another example from
+     personal experience.  One of my first jobs in tech was working on
+     old accounting systems, helping customers upgrade to newer
+     systems.  A necessary part of this is importing the old data into
+     the new system. None of these systems had "export as CSV," and
+     many of them were orphaned, with no company offering support.
+     So, I was given a few giant blobs of data, and had to reverse
+     engineer the database formats to build custom data export
+     scripts.  This isn't as bad as it sounds, since most of them were
+     written in COBOL, which has blissfully consistent/stupid record
+     packing routines.  Better examples of "dead" file formats can be
+     found at <a
+      href="http://justsolve.archiveteam.org/index.php/Main_Page">Archive
+     Team's File Format Problem</a> work.<a
+      href="#footnote5return">^return^</a></p>

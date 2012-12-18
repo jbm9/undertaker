@@ -17,6 +17,14 @@ echo "Creating a publishable directory for $project_name"
 echo "Copying website into publish..."
 cp -rv web/* ${pdir}
 
+echo "Running website build script if any..."
+pushd ${pdir} &> /dev/null
+if [ -x publish ]; then
+    ./publish
+fi
+popd &> /dev/null
+
+
 echo "Exporting git repository to publish..."
 git clone --verbose --bare --no-hardlinks ${project_dir} ${pdir}/${project_name}.git
 cd ${pdir}/${project_name}.git
