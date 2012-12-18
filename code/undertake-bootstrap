@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+# Sets up your ~/projects/ directory for you.
+
+if [ -d ${HOME}/projects ]; then
+    echo "Sorry, you already have a projects directory."
+    exit 2
+fi
+
+mkdir -pv ${HOME}/projects
+
+skeldir=$(dirname $0)/../share/undertaker/skel
+cp -rv ${skeldir} ~/projects/.skel

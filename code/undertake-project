@@ -1,0 +1,24 @@
+#!/bin/bash
+
+PROJECT_DIR=${HOME}/projects
+
+project_name=$1
+
+d=${PROJECT_DIR}/${project_name}
+
+VFLAG=""
+[ $DEBUG ] && VFLAG="-v"
+
+
+[ $DEBUG ] && echo "Working ${project_name} in ${PROJECT_DIR}."
+
+mkdir -p $VFLAG $d
+pushd $d &> /dev/null
+
+echo "Initializing git repository for ${project_name}..."
+git init
+
+[ $DEBUG ] && echo "Copying in skeleton project..."
+cp -r $VFLAG ${PROJECT_DIR}/.skel/* .
+
+popd &> /dev/null

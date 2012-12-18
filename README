@@ -1,0 +1,25 @@
+undertaker
+==========
+
+Undertaker is a project/publishing helper.  It helps you create
+standardized directory structures for your projects, then helps you
+put them up on the web as static websites (with clone'able git repos).
+It can also help you push your code to multiple upstream git repos, so
+your code can live on both your server and on github.
+
+Usage:
+======
+
+undertake-bootstrap -- Creates your ~/projects/ directory, and
+		       installs a trivial skeleton directory.
+
+undertake-project FOO -- Creates a new project directory in
+                         ~/projects/ named FOO, creates a git repo,
+                         and then initializes it to your skeleton
+                         project.  It does not do any commits!
+
+
+Contents:
+
+web/ -- An empty website for this thing
+code/ -- An empty directory for code for this thing
