@@ -1,0 +1,30 @@
+#!/bin/bash
+
+PUBLISH_DIR=${HOME}/publish/
+
+# XXX TODO Make sure we're in an actual undertaker directory.
+project_dir=$(pwd)
+project_name=$(basename ${project_dir})
+
+ts=$(date +%s)
+
+pdir=${PUBLISH_DIR}/${project_name}-$ts/
+
+mkdir -p ${pdir}
+
+echo "Creating a publishable directory for $project_name"
+
+echo "Copying website into publish..."
+cp -rv web/* ${pdir}
+
+echo "Exporting git repository to publish..."
+git clone --verbose --bare --no-hardlinks ${project_dir} ${pdir}/${project_name}.git
+cd ${pdir}/${project_name}.git
+git update-server-info
+
+
+pushd ${PUBLISH_DIR} &> /dev/null
+rm ${project_name}
+ln -v -sf ./${project_name}-${ts}/ ./${project_name}
+popd
+
