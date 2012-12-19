@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "Undertaker: helping you share your projects"
+echo
+echo 'Available subcommands:'
+echo '  - bootstrap: sets up your ~/projects/ directory'
+echo '  - project: creates a new "empty" project'
+echo '  - clone: pulls an existing project into your tree'
+echo '  - publish: bundles your project up for publishing'
+echo
+echo 'This concludes pretty much all the help available at this time, sorry.'
