@@ -1,0 +1,8 @@
+- actual help to get people started with the system
+- how to manage pushing code to multiple git repos?
+- document the ethos of the system, insofar as it exists
+- figure out how to do blog posts
+- add dexy support
+- add ipython support
+- add the ability to push up via scp
+- add the ability to do build-like things (build exes, dmgs, tarballs,etc)
