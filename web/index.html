@@ -2,27 +2,67 @@
 
 <h1>Undertaker</h1>
 
-<p>Undertaker is a new-school unix utility<sup><small><a
-   href="#footnote1" name="footnote1return">[1]</a></small></sup>,
-  which exists to help structure your projects for release from the
-  start.</p>
+<p>Undertaker is a new-school unix utility <sup><small><a
+    href="#footnote1" name="footnote1return">[1]</a></small></sup>,
+   which helps you structure your projects for sharing from the
+   start.</p>
 
 <p class="quote">"Ideas rot if you don't do something with them. I used to try to hoard them, 
 		  but they rotted. Now I just blog them or tell people about them. Sometimes 
 		  they still rot, but sometimes someone finds them useful in one way or 
-		  another" -- Edd Dumbill <a href="#footnote2" name="footnote2return">[2]</a></p>
+		  another" <br/>
+                  &mdash; Edd Dumbill <a href="#footnote2" name="footnote2return">[2]</a></p>
 
-<p>The inspiration for this was a sudden realization: "Y'know, I could
-put 90% of everything on my computer on the web, and it wouldn't cause
-any harm."  It became abundantly clear that I wasn't publishing nearly
-enough of what I was up to on the web, and that's really too bad.  So,
-I started thinking about how to make sharing things on the web the
-default action for my projects.  The current results of that are here,
-though they are very much a work-in-progress.</p>
+<p>The inspiration for this was a sudden realization: <i>"Y'know, I
+could put 90% of everything on my computer on the web, and it wouldn't
+cause any harm."</i> It became abundantly clear that I wasn't
+publishing enough on the web.  So, I started thinking about how to
+make sharing my default, instead of something I did later.  The
+current results of that are here, though they are very much a
+work-in-progress.</p>
 
+<h2>A very short history of code publication</h2>
+
+<p>The most traditional unit of publication of software is the
+venerable tarball.  This is just a compressed copy of the directory at
+a given point in time.  Tarballs predate the web; their contents
+reflect the concerns of a different age.  A tarball contained all of
+the code, and, if you were lucky, some documentation on how to
+actually use it.  It also typically contained a ChangeLog and a TODO
+file, which were nods to the past and future, respectively.  But to
+get to all of this content, you had to break open the eggshell of the
+compressed file.  When the web came along, that changed, sort of.</p>
+
+<p>Once we had the web, people started putting up homepages for their
+software packages.  These were one step forward: you could view much
+of the documentation for a project without having to download its
+tarball, then manually grovel around in the files to find what you
+were looking for (thanks for Hypertext, Ted Nelson!).  At the same
+time, it was two big steps back: people put their code up on FTP sites
+(not on the web), and the documentation started moving out of the
+tarball and onto the web.</p>
+
+<p>READMEs began to contain the fateful line "For all the details, see
+the homepage at http://www.geocities.com/...".  Of course, nobody put
+these website into their source code tarballs, so now there's a bunch
+of code floating around the internet with documentation that was lost
+when their webhost went out of business and they didn't bother
+uploading the webpage to a new home.  Similarly, there's a bunch of
+websites containing documentation for software that was only stored on
+FTP servers that are long since shut down.</p>
+
+<p>Sourceforge and its CVS viewer service, how it made things even weirder</p>
+
+<p>github kept up what SF started</p>
+
+<p>git and a bit of inside-out thinking lets us fix a lot of this</p>
+
+<p>Things like wikis and bug tracking still belong on github et al,
+but we need to take back our artefacts.</p>
 
 <p class="quote">"Publishing is like your parents coming over -- you
-		  have to clean it up and make it presentable" --
+		  have to clean it up and make it presentable"
+                  <br/>&mdash;
 		  Danny O'Brien <a href="#footnote3"
 		  name="footnote3return">[3]</a></p>
 
@@ -30,20 +70,25 @@ though they are very much a work-in-progress.</p>
 <p>Most of the project is still very much WIP, so the best
 documentation is in the README file and the source code.  If you want
 to use this right now, you'll need to be willing to do a fair bit of
-hacking, kluding, and otherwise fixing up to get around the stuff I
+hacking, kludging, and otherwise fixing up to get around the stuff I
 have hard-coded for my own settings right now.</p>
 
-<p>You can git clone the code from <a href="undertaker.git/">this
-URL</a> (right-click and "copy link address").</p>
+<h2>Download</h2>
 
-<h2>Why not use nice services like github or wordpress for
-everything?</h2>
+<p>You can git clone the code from <a href="undertaker.git/">this
+URL</a> (right-click and "copy link address").  If that's too much
+effort for you, don't worry: the code is not in a state that you're
+going to want to cope with just yet.</p>
+
+<h2>Why not github?</h2>
 
 <p>There's an argument to be made for just using github (or bitbucket or
 sourceforge or...) for the source code storage, and then just putting
 everything up on a blog for the sharing of content.  There are a few
 problems with this approach: durability, archivability, and
 portability</p>
+
+<h3>Durability</h3>
 
 <p>"Durability" here means "How long a given publication will last."
 Of all the services mentioned above, sourceforge has by far the
@@ -54,6 +99,8 @@ are putting new content up on SF, because it's not clear how much
 longer they're going to be around.  Any content you put into a
 closed-system service will only exist as long as that service
 does.</p>
+
+<h3>Archivability</h3>
 
 <p>"Archivability" is not a word that I just made up, I swear.  It
 refers to how easy it is to create an archive of a work. There are
@@ -77,6 +124,8 @@ a good chance it won't run on recent PHP releases<a href="#footnote4" name="foot
 your carefully-crafted dynamic homepage has, effectively,
 disappeared.</p>
 
+<h3>Portability</h3>
+
 <p>The last major concern is portability.  How much work is it to move
 your project from one service to another?  If your software has its
 whole homepage in github's wiki tool, and github decides to stop
@@ -97,6 +146,8 @@ This makes it easy for you to save copies of your work for backups and
 archiving, as well as making it easy to share your work widely using
 very basic, very widespread tools.  </p>
 
+<h3>Simplicity</h3>
+
 <p>It also tries to keep its processing of your input to a minimum, so
 that an undertaker content repository is a decent archive itself,
 without requiring anyone actually have undertaker to make sense of
@@ -110,7 +161,7 @@ out for you, but why not keep your data in a human-readable format in
 the first place?</p>
 
 <!-- -------------------- -->
-
+<h2>Footnotes</h2>
 
 <p class="footnote"><a name="footnote1">1.</a> <a href="#footnote1return">^</a> New-school unix utilities are utilities made up of subcommands.  The
   best-known examples are git and rails.  To do anything, you run 'git
@@ -119,7 +170,7 @@ the first place?</p>
   comes via one meta-command, which just multiplexes itself out to
   subcommands.  For a better description (with a fair bit of
   distraction about accounting software), see <a
-   href="http://joeyh.name/blog/entry/hledger/">Joey Hess's post about
+href="http://joeyh.name/blog/entry/hledger/">Joey Hess's post about
   hledger</a>) <a href="#footnote1return">^return^</a> .</p>
 
 <p class="footnote"><a name="footnote2">2.</a> <a
