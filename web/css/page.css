@@ -1,0 +1,30 @@
+h1,h2,h3 { 
+    font-family: 'Josefin Slab', sans-serif; 
+    font-weight: bold;
+    text-indent: -0.5em;
+}
+
+body 
+{ 
+  font-family: 'Vollkorn', serif; 
+  margin-left: 2em;
+  width: 55em;
+}
+
+.quote {
+    margin-left: 4em;
+    margin-right: 3em;
+    width: 35em;
+    text-align: justify;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    font-size: 90%;
+    font-style: italic;
+}
+
+.footnote {
+    front-size: 90%;
+    font-style: italic;
+    padding-left: 2em;
+    text-indent: -2em;
+}
