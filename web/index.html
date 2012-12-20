@@ -13,6 +13,56 @@
 		  another" <br/>
                   &mdash; Edd Dumbill <a href="#footnote2" name="footnote2return">[2]</a></p>
 
+<p class="aside">I cannot emphasize enough that this is a draft of absolutely
+everything here.  I'm not likely to change my mind on the fundamentals
+described below, but I'm going to reserve the right to, as this is my
+first foray into formalizing/systematizing my thoughts about these
+issues.</p>
+
+<p class="aside">This whole project is, in a lot of ways, reactionary.
+It's my attempt to patch over a bunch of shortcomings and pitfalls
+I've run into over the last 15 years.  A lot of my reasoning is
+grounded in anecdotes, many of them fuzzy memories.  I like to believe
+that I'm not cargo-culting from my experiences, but it may very well
+be that I am.</p>
+
+<p class="aside">As an aside of an aside, one of the people who's
+making me think about all this is Keith Fenner, of Turn Wright Machine
+Works.  He's a guy who runs a machine shop in Cape Code, and "vlogs"
+(fuck I hate that word) the work he does on <a
+href="https://www.youtube.com/user/KEF791/videos?view=0">the Turn
+Wright Machine Works YouTube channel</a>.  He's spending a little bit
+more time doing his work, and making good-if-rough videos of the
+process for others to see.</p>
+
+<p class="aside">Here are some of the things I'm reacting to:</p>
+
+<ul class="aside">
+  <li>The idea that code is something you write and then eventually
+  publish.</li>
+  
+  <li>The idea that code and documents about that code are
+  different-class citizens.</li>
+
+  <li>The idea that it's okay to release half-assed code but
+  half-assed documentation isn't allowable.</li>
+
+  <li>The idea that either 1) blogs are permanent or 2) your
+  exposition of your code is ephemeral.</li>
+
+  <li>The idea that "publishing" anything that involves server-side
+  scripts to view is actually publishing.</li>
+
+  <li>The idea that a project's infrastructure suffices for
+  documentation.</li>
+
+  <li>The idea that tarballs are obsolete, and we should all be
+  pulling from HEAD all the time.</li>
+</ul>
+
+
+
+
 <p>The inspiration for this was a sudden realization: <i>"Y'know, I
 could put 90% of everything on my computer on the web, and it wouldn't
 cause any harm."</i> It became abundantly clear that I wasn't
@@ -51,9 +101,39 @@ uploading the webpage to a new home.  Similarly, there's a bunch of
 websites containing documentation for software that was only stored on
 FTP servers that are long since shut down.</p>
 
-<p>Sourceforge and its CVS viewer service, how it made things even weirder</p>
+<p>As software got more complex, people started collaborating more.
+As part of that, we introduced revision control.  The first network
+revision control system was CVS.  This is the technology Sourceforge
+was based around: SF made it easy for people to set up a new project
+and get an internet-accessible CVS repository.  This was a big step
+forward for collaboration, especially as they built out additional
+services, like bug tracking, collaboratively edited webpages, and
+other niceties.</p>
 
-<p>github kept up what SF started</p>
+<p>This unification was very nice on one level.  It meant that you
+only needed to go to one place to get all the artifacts for a given
+project.  This unification was great, and is why Sourceforge was so
+popular and well-received.  However, it also meant that all these
+projects and all their artifacts only existed so long as Sourceforge
+did.</p>
+
+<p>This centralization creates a single point of failure (SPOF): when
+Sourceforge was down, thousands and thousands of open source projects
+were essentially unavailable.  To their credit, SF has suffered very
+little down-time, but the SPOF persists in a more insidious fashion.
+When Sourceforge eventually runs out of money and shuts down (as
+almost all commercial concerns do), all of these projects suddenly
+disappear.</p>
+
+<p>Many projects have transitioned from SF to other services over the
+years, notably bitbucket and github.  These services are invaluable,
+and fill important needs around collaboration.  However, we shoudln't
+think of them as publication platforms.  Instead, we should be using
+them to create software, then distributing that software ourselves.
+It's this separation of creation and publication that I'm driving at.
+[[TK Footnote
+http://en.wikipedia.org/wiki/Comparison_of_open_source_software_hosting_facilities
+]].  </p>
 
 <p>git and a bit of inside-out thinking lets us fix a lot of this</p>
 

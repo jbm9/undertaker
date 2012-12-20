@@ -28,3 +28,14 @@ body
     padding-left: 2em;
     text-indent: -2em;
 }
+
+.aside {
+    margin-left: 3em;
+    background-color: #e8e8d0;
+    font-size: 120%;
+    padding: 1em;
+}
+
+.aside li {
+    margin-left: 1em;
+}
