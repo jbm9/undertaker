@@ -6,6 +6,24 @@ PUBLISH_DIR=${HOME}/publish/
 project_dir=$(pwd)
 project_name=$(basename ${project_dir})
 
+pushd ${project_dir} &> /dev/null
+git status | grep 'nothing to commit' &> /dev/null
+
+status=$?
+
+echo "GIT STATUS RESULT: $status"
+
+if [ "x$status" != "x0" ]; then
+    echo "Sorry, your git state is dirty.  Please commit first."
+    echo
+    git status
+    echo
+    echo Please correct the above before publishing.
+    echo
+    exit 2;
+fi
+popd
+
 ts=$(date +%s)
 
 pdir=${PUBLISH_DIR}/${project_name}-$ts/
