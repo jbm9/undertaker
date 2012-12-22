@@ -1,0 +1,95 @@
+#!/bin/bash
+
+# Dumps the current active undertaker configuration to stdout.  This
+# is actually eval'd into scripts to get configuration data, ala
+# ssh-agent(1).
+
+# Also:
+# Dear ssh-agent author,
+#
+# Thank you for showing me a really good idea to steal.
+# -- jbm
+#
+
+
+##############################
+# Defaults
+
+export UT_PROJECT_DIR=${HOME}/projects/
+export UT_PUBLISH_DIR=${HOME}/publish/
+export UT_INSTALL_DIR=/usr
+
+export UT_REMOTE_GIT_BASEURL=git@github.com
+export UT_REMOTE_GIT_BASEPATH=GITHUB_USERNAME
+
+export UT_REMOTE_GIT_SETUPCMD=true
+
+##############################
+# Load user settings
+
+
+if [ -f ${HOME}/.undertaker_conf ] ; then
+   source ${HOME}/.undertaker_conf
+fi
+
+echo '# This is your active undertaker configuration.'
+echo '#'
+echo '# To customize this, edit ${HOME}/.undertaker_conf.'
+echo '# Defining any of these variables in that file will change the'
+echo '# the values you see below.  Add your change, and then run'
+echo '#   undertake config | less '
+echo '# again to confirm that it stuck'
+echo '#'
+echo '# Eg If you add "export UT_PROJECT_DIR=${HOME}/src/" in that file,'
+echo '# your project directory will be in ~/src/ instead of ~/projects/'
+echo
+
+echo '# UT_PROJECT_DIR is the directory containing your local repos'
+echo '# The default is ~/projects/, so project Foo is ~/projects/Foo'
+echo '#'
+echo "# Yours is set to ${UT_PROJECT_DIR}, so Foo is in ${UT_PROJECT_DIR}/Foo"
+echo "UT_PROJECT_DIR=${UT_PROJECT_DIR}; export UT_PROJECT_DIR;"
+echo
+
+echo '# UT_PUBLISH_DIR is the directory where your publishable copies get put'
+echo '# The default is ~/publish/, so project Foo is ~/publish/Foo'
+echo '#'
+echo "# Yours is set to ${UT_PUBLISH_DIR}, so Foo is in ${UT_PUBLISH_DIR}/Foo"
+echo "UT_PUBLISH_DIR=${UT_PUBLISH_DIR}; export UT_PUBLISH_DIR;"
+echo
+
+echo '# UT_INSTALL_DIR is the directory your undertaker install is in'
+echo '# The default is /usr/, so binaries are found in /usr/bin/'
+echo '#'
+echo "# Yours is set to ${UT_INSTALL_DIR}"
+echo "UT_INSTALL_DIR=${UT_INSTALL_DIR}; export UT_INSTALL_DIR;" 
+echo
+
+echo '# UT_REMOTE_GIT_BASEURL is the username@hostname part of your git URL'
+echo '# The default is git@github.com, which is what you want for github'
+echo '#'
+echo "# Yours is set to ${UT_REMOTE_GIT_BASEURL}"
+echo "UT_REMOTE_GIT_BASEURL=${UT_REMOTE_GIT_BASEURL}; export UT_REMOTE_GIT_BASEURL;"
+echo
+
+echo '# UT_REMOTE_GIT_BASEPATH is the path to the git repos on the far side'
+echo '# The default is GITHUB_USERNAME'
+echo '# You want to change that.'
+echo '# Unless your github username actually _is_ GITHUB_USERNAME.'
+echo '# If so, you have other problems.'
+echo '#'
+echo '# This means that your checkouts will happen with something like'
+echo "#  git clone ${UT_REMOTE_GIT_BASEURL}/${UT_REMOTE_GIT_BASEPATH}"
+echo "UT_REMOTE_GIT_BASEPATH=${UT_REMOTE_GIT_BASEPATH}; export UT_REMOTE_GIT_BASEPATH;"
+echo
+
+echo '# UT_REMOTE_GIT_SETUPCMD is the command to use to create a remote repo'
+echo "# The default is 'true', which doesn't actually do anything"
+echo '#'
+echo '# During "undertake project", this command is run like so:'
+echo '#   eval $(${UT_REMOTE_GIT_SETUPCMD} ${repo_name})'
+echo '#'
+echo '# You may want to make it something like "ssh user@host init_repo.sh"'
+echo '# (Assuming you have an init_repo.sh command on the remote host, etc)'
+echo "UT_REMOTE_GIT_SETUPCMD='${UT_REMOTE_GIT_SETUPCMD}'; export UT_REMOTE_GIT_SETUPCMD;"
+echo

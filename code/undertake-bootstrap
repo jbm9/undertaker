@@ -2,12 +2,18 @@
 #
 # Sets up your ~/projects/ directory for you.
 
-if [ -d ${HOME}/projects ]; then
-    echo "Sorry, you already have a projects directory."
+eval $(undertake config | grep -v '^#')
+
+if [ -d ${UT_PROJECT_DIR} ]; then
+    echo "Sorry, you already have a projects directory at '${UT_PROJECT_DIR}'."
     exit 2
 fi
 
-mkdir -pv ${HOME}/projects
+echo "Making directory ${UT_PROJECT_DIR}"
+mkdir -pv ${UT_PROJECT_DIR}
 
-skeldir=$(dirname $0)/../share/undertaker/skel
-cp -rv ${skeldir} ~/projects/.skel
+echo "Copying in the skeleton project directory"
+skeldir=${UT_INSTALL_DIR}/share/undertaker/skel
+cp -rv ${skeldir} ${UT_PROJECT_DIR}/.skel
+
+echo "All done!"

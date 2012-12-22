@@ -1,17 +1,16 @@
 #!/bin/bash
 
-PROJECT_DIR=${HOME}/projects
-remote=jbm@saiety.local
+eval $(undertake config | grep -v '^#')
 
 project_name=$1
 
-d=${PROJECT_DIR}/${project_name}
+d=${UT_PROJECT_DIR}/${project_name}
 
 VFLAG=""
 [ $DEBUG ] && VFLAG="-v"
 
 
-[ $DEBUG ] && echo "Working ${project_name} in ${PROJECT_DIR}."
+[ $DEBUG ] && echo "Working ${project_name} in ${UT_PROJECT_DIR}."
 
 mkdir -p $VFLAG $d
 pushd $d &> /dev/null
@@ -20,12 +19,12 @@ echo "Initializing git repository for ${project_name}..."
 git init
 
 [ $DEBUG ] && echo "Copying in skeleton project..."
-cp -r $VFLAG ${PROJECT_DIR}/.skel/* .
+cp -r $VFLAG ${UT_PROJECT_DIR}/.skel/* .
 
 
 [ $DEBUG ] && echo "Creating remote repository..."
-ssh ${remote} init_repo.sh ${project_name}
-git remote add origin ssh://${remote}/~/gitrepos/${project_name}.git
+echo $(${UT_REMOTE_GIT_SETUPCMD} ${project_name}) &> /dev/null
+git remote add origin ssh://${UT_REMOTE_GIT_BASEURL}/${UT_REMOTE_GIT_BASEPATH}/${project_name}.git
 git add README
 git commit -m 'Adds empty README'
 git push -u origin master

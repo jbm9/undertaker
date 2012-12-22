@@ -3,6 +3,7 @@
 echo "Undertaker: helping you share your projects"
 echo
 echo 'Available subcommands:'
+echo '  - config: displays the active undertaker config settings'
 echo '  - bootstrap: sets up your ~/projects/ directory'
 echo '  - project: creates a new "empty" project'
 echo '  - clone: pulls an existing project into your tree'
